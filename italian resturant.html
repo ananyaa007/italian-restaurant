@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant Website</title>
+<style>
+   * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        font-family: Arial, sans-serif, italic;
+        line-height: 1.6;
+        background-color: #f4f4f4;
+        background-image: url('https://d39l2hkdp2esp1.cloudfront.net/img/photo/213564/213564_00_2x.jpg?20200706073327');
+        background-size: cover;
+        background-position: center;
+    }
+    .overlay {
+        background-color: rgba(128, 114, 114, 0.178);
+        padding: 50px 0;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    header {
+        background-color: rgba(39, 44, 44, 0.774);
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+    }
+    header h1 {
+        margin: 0;
+        font-size: 3em;
+    }
+    nav {
+        text-align: center;
+        margin: 20px 0;
+    }
+    nav a {
+        margin: 0 15px;
+        text-decoration: none;
+        color: #fff;
+        font-size: 1.2em;
+        padding: 10px;
+        background-color: rgba(39, 44, 44, 0.774);
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    nav a:hover {
+        background-color: #555;
+    }
+    .menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    .menu-item {
+        width: 300px;
+        background: linear-gradient(145deg, #fff, #f0f0f0);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .menu-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    .menu-item img {
+        width: 100%;
+        height: auto;
+        border-bottom: 2px solid #ccc;
+        transition: opacity 0.3s ease;
+    }
+    .menu-item:hover img {
+        opacity: 0.9;
+    }
+    .menu-item-info {
+        padding: 20px;
+        text-align: center;
+    }
+    .menu-item h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 1.8em;
+        color: #333;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    }
+    .menu-item p {
+        margin-bottom: 15px;
+        color: #666;
+        font-size: 1.1em;
+    }
+    button {
+        padding: 10px 20px;
+        background: linear-gradient(45deg, #ff6347, #e5533d);
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 1.1em;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+    button:hover {
+        background: linear-gradient(45deg, #ff4c29, #d44122);
+        transform: scale(1.05);
+    }
+    .section {
+        display: none;
+    }
+    .section.active {
+        display: block;
+    }
+    .cart-section {
+        margin-top: 40px;
+        text-align: center;
+    }
+    .cart-item {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        color: #333;
+    }
+    .checkout-btn {
+        margin-top: 20px;
+        font-size: 1.2em;
+        background-color: #28a745;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .checkout-btn:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
+    @media (max-width: 768px) {
+        .menu-item {
+            width: calc(50% - 20px);
+        }
+    }
+    @media (max-width: 480px) {
+        .menu-item {
+            width: 100%;
+        }
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>Italian Flavors</h1>
+</header>
+
+<nav>
+    <a href="#" onclick="showSection('order')">Order</a>
+    <a href="#" onclick="showSection('dessert')">Desserts</a>
+</nav>
+
+<div class="overlay">
+    <div class="container">
+        <!-- Order Section -->
+        <section id="order" class="section active">
+            <h2>Order Menu</h2>
+            <div class="menu">
+                <div class="menu-item">
+                    <img src="https://recipes.net/wp-content/uploads/2023/05/cheesy-alfredo-pasta-recipe_5f653677c556b30cf4fb574861cabb03-768x768.jpeg" alt="Pasta">
+                    <div class="menu-item-info">
+                        <h3>Pasta - ₹250</h3>
+                        <p>Fine flour of ground grain with water to create a dough and then making into strips, ribbons, and other shapes.</p>
+                        <button onclick="addToCart('Pasta', 250)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://images.ctfassets.net/nw5k25xfqsik/64VwvKFqxMWQORE10Tn8pY/200c0538099dc4d1cf62fd07ce59c2af/20220211142754-margherita-9920.jpg" alt="Pizza">
+                    <div class="menu-item-info">
+                        <h3>Pizza - ₹350</h3>
+                        <p>Italian origin consisting of a flattened disk of bread dough topped with some combination of olive oil, oregano, tomato, olives, mozzarella or other cheeses.</p>
+                        <button onclick="addToCart('Pizza', 350)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://realfood.tesco.com/media/images/Jimmys-Steak-for-two-4979eab2-67f7-4524-a62a-f54951b1df60-0-472x310.jpg" alt="Steak">
+                    <div class="menu-item-info">
+                        <h3>Steak - ₹500</h3>
+                        <p>Grilled to perfection, served with a side of roasted vegetables and mashed potatoes.</p>
+                        <button onclick="addToCart('Steak', 500)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Section -->
+            <div class="cart-section">
+                <h2>Your Cart</h2>
+                <div id="cart-items"></div>
+                <h3>Total: ₹<span id="total-price">0</span></h3>
+                <button class="checkout-btn" onclick="checkout()">Checkout</button>
+            </div>
+        </section>
+
+        <!-- Dessert Section -->
+        <section id="dessert" class="section">
+            <h2>Dessert Menu</h2>
+            <div class="menu">
+                <div class="menu-item">
+                    <img src="https://www.curlyscooking.co.uk/wp-content/uploads/2014/03/Vanilla-Cupcakes-G-scaled.jpg" alt="Cupcake">
+                    <div class="menu-item-info">
+                        <h3>Vanilla Cupcake - ₹100</h3>
+                        <p>Classic vanilla cupcake with buttercream frosting.</p>
+                        <button onclick="addToCart('Vanilla Cupcake', 100)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://bakerbynature.com/wp-content/uploads/2023/08/Easy-Chocolate-Mousse-Baker-by-Nature-12617-1-500x500.jpg" alt="Chocolate Mousse">
+                    <div class="menu-item-info">
+                        <h3>Chocolate Mousse - ₹150</h3>
+                        <p>Rich and creamy chocolate mousse topped with whipped cream.</p>
+                        <button onclick="addToCart('Chocolate Mousse', 150)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="https://grandbaby-cakes.com/wp-content/uploads/2023/04/lemonade-sorbet-recipe.jpg" alt="Lemon Sorbet">
+                    <div class="menu-item-info">
+                        <h3>Lemon Sorbet - ₹120</h3>
+                        <p>Tangy and refreshing sorbet topped with mint leaf.</p>
+                        <button onclick="addToCart('Lemon Sorbet', 120)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script>
+    let cart = [];
+    let totalPrice = 0;
+
+    function addToCart(itemName, price) {
+        cart.push({ item: itemName, price: price });
+        totalPrice += price;
+        alert(`Added ${itemName} to cart!`);
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartItems = document.getElementById('cart-items');
+        cartItems.innerHTML = '';
+        cart.forEach(item => {
+            cartItems.innerHTML += `<div class="cart-item">${item.item} - ₹${item.price}</div>`;
+        });
+        document.getElementById('total-price').innerText = totalPrice;
+    }
+
+    function checkout() {
+        if (cart.length === 0) {
+            alert("Your cart is empty!");
+        } else {
+            alert(`Thank you for your order! You've ordered: ${cart.map(item => item.item).join(', ')}. Total: ₹${totalPrice}`);
+            cart = [];
+            totalPrice = 0;
+            updateCart();
+        }
+    }
+
+    function showSection(sectionId) {
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.remove('active');
+        });
+        document.getElementById(sectionId).classList.add('active');
+    }
+</script>
+</body>
+</html>
